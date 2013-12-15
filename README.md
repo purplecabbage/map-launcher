@@ -2,7 +2,7 @@ MapLauncher plugin usage:
 ===============
 
 
-The MapLauncher plugin allows you to launch the Windows Phone Map application with in defined state.
+The MapLauncher plugin allows you to launch the Windows Phone Map application in a defined state.
 You can either open maps in Directions view, or Map view, depending on the calls you make.
 The user will need to press the back button to return to your app.
 
