@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using System.Device.Location;
 using System.Runtime.Serialization;
 using System.Diagnostics;
+using WPCordovaClassLib.Cordova.JSON;
 
 namespace WPCordovaClassLib.Cordova.Commands
 {
@@ -62,7 +63,10 @@ namespace WPCordovaClassLib.Cordova.Commands
 
         public void searchNear(string options)
         {
-            SearchOptions searchOptions = JSON.JsonHelper.Deserialize<SearchOptions>(options);
+            string[] args = JsonHelper.Deserialize<string[]>(options);
+            string callbackId = args[1];
+
+            SearchOptions searchOptions = JsonHelper.Deserialize<SearchOptions>(args[0]);
             BingMapsTask bingMapsTask = new BingMapsTask();
 
             //Omit the Center property to use the user's current location.
@@ -81,13 +85,16 @@ namespace WPCordovaClassLib.Cordova.Commands
             {
                 Debug.WriteLine("Error::searchTerm must be specified for map searching");
             }
-           
-            
+
+            DispatchCommandResult(new PluginResult(PluginResult.Status.OK), callbackId);
         }
 
         public void getDirections(string options)
         {
-            GetDirectionsOptions directionOptions = JSON.JsonHelper.Deserialize<GetDirectionsOptions>(options);
+            string[] args = JsonHelper.Deserialize<string[]>(options);
+            string callbackId = args[1];
+
+            GetDirectionsOptions directionOptions = JsonHelper.Deserialize<GetDirectionsOptions>(args[0]);
 
             BingMapsDirectionsTask bingMapsDirectionsTask = new BingMapsDirectionsTask();
 
@@ -95,7 +102,10 @@ namespace WPCordovaClassLib.Cordova.Commands
             if (directionOptions.Start != null)
             {
                 LabeledMapLocation startLML = new LabeledMapLocation();
-                startLML.Location = new GeoCoordinate(directionOptions.Start.Coordinates.Latitude, directionOptions.Start.Coordinates.Longitude);
+                if (directionOptions.Start.Coordinates != null)
+                {
+                    startLML.Location = new GeoCoordinate(directionOptions.Start.Coordinates.Latitude, directionOptions.Start.Coordinates.Longitude);
+                }
                 if (directionOptions.Start.Label != null)
                 {
                     startLML.Label = directionOptions.Start.Label;
@@ -119,6 +129,7 @@ namespace WPCordovaClassLib.Cordova.Commands
 
             // If bingMapsDirectionsTask.Start is not set, the user's current location is used as the start point.
             bingMapsDirectionsTask.Show();
+            DispatchCommandResult(new PluginResult(PluginResult.Status.OK), callbackId);
         }
     }
 }
