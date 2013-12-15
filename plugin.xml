@@ -12,7 +12,7 @@
     <issue></issue>
 
     <js-module src="www/maplauncher.js" name="maplauncher">
-        <clobbers target="" />
+        <clobbers target="MapLauncher" />
     </js-module>
     
     <!-- android -->
