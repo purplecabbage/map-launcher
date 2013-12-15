@@ -14,9 +14,9 @@ using System.Device.Location;
 using System.Runtime.Serialization;
 using System.Diagnostics;
 
-namespace WP7CordovaClassLib.Cordova.Commands
+namespace WPCordovaClassLib.Cordova.Commands
 {
-    public class PGMapLauncher : Cordova.Commands.BaseCommand
+    public class MapLauncher : Cordova.Commands.BaseCommand
     {
 
         [DataContract]
