@@ -3,15 +3,15 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
       id="com.risingj.cordova.maplauncher"
-      version="0.0.0">
+      version="0.1.0">
     <name>MapLauncher</name>
     <description>Cordova plugin launching the maps application with directions, a landmark, or search term.</description>
     <license>Apache 2.0</license>
     <keywords>cordova,maps</keywords>
-    <repo></repo>
-    <issue></issue>
+    <repo>https://github.com/purplecabbage/map-launcher</repo>
+    <issue>https://github.com/purplecabbage/map-launcher/issues</issue>
 
-    <js-module src="www/maplauncher.js" name="maplauncher">
+    <js-module src="www/maplauncher.js">
         <clobbers target="MapLauncher" />
     </js-module>
     
